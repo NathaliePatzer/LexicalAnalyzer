@@ -90,3 +90,17 @@ th:first-child {
   left: 0;
   z-index: 2;
 }
+
+#words-list {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px;
+}
+
+#words-list div {
+  word-break: break-word; 
+  max-width: 100%;       
+  padding: 5px;
+  background: #c772e44d;  
+  border-radius: 6px;  
+}

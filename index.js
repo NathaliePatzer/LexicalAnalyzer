@@ -16,6 +16,18 @@ $(document).ready(function () {
         this.matrix.set("q0", new Map());
     };
 
+    function updateDictionary() {
+        console.log(wordList);
+        var words = $("#words-list");
+        var str = "";
+        for (var i=0; i<wordList.length; i++) {
+            str += "<div>" + wordList[i] + "</div>"; 
+            console.log(wordList[i]);
+        }
+        console.log(str);
+        words.html(str);
+    }
+
     //gerencia a adição e armazenamento de palavras
     function addWords(word) {
         console.log(word);
@@ -68,6 +80,8 @@ $(document).ready(function () {
         wordList.push(word);
         console.log(analyzer.final_states);
         console.log(analyzer.matrix);
+        //adiciona a palavra ao dicionário no html
+        updateDictionary();
     }
 
     //evento ao clicar no botão para adicionar palavras 
@@ -83,6 +97,7 @@ $(document).ready(function () {
         $("#words").val("");
     })
 
+    
 
 });
 
