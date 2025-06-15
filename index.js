@@ -48,6 +48,8 @@ $(document).ready(function () {
 
         //inicia a construção das linhas da tabela 
         result += `<tbody>\n`;
+        console.log(analyzer.matrix);
+        console.log(analyzer.matrix.size);
         for (let j = 0; j < analyzer.matrix.size; j++) {
             if (analyzer.final_states.includes(`q${j}`)) {
                 result += `<tr class="row_q${j}">\n`;
@@ -81,6 +83,7 @@ $(document).ready(function () {
         analyzer.token_stack = [];
         analyzer.state_stack = [];
         analyzer.current_state = "q0";
+        states = 0;
         console.log(analyzer);
         var str = `<table>
           <thead>
@@ -211,7 +214,7 @@ $(document).ready(function () {
         var text = $("#words").val();
         //verifica se o input está vazio 
         if (text.trim() != "") {
-            addWords(text);
+            addWords(text.toLowerCase());
         } else {
             alert("Escreve algo aí seu bananão!");
         }
@@ -226,6 +229,18 @@ $(document).ready(function () {
         alert("Você exclui a lista :(((");
     })
 
+    $("#words").keydown(function(event) {
+        var text = $("#words").val();
+        if (!(/^[a-zA-Z]+$/.test(event.key)) && !(event.key === ' ' || event.keyCode === 13)) {
+            console.log('entrou')
+            event.preventDefault();
+        } 
+        else if (event.key === ' ' || event.keyCode === 13) {
+            event.preventDefault();
+            addWords(text.toLowerCase());
+            $("#words").val("");
+        }
+    })
 
 });
 
