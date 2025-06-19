@@ -6,6 +6,19 @@
     <title>Analisador Léxico</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/jquery.magnific-popup.min.js"
+      integrity="sha512-fCRpXk4VumjVNtE0j+OyOqzPxF1eZwacU3kN3SsznRPWHgMTSSo7INc8aY03KQDBWztuMo5KjKzCFXI/a5rVYQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.2.0/magnific-popup.min.css"
+      integrity="sha512-lvaVbvmbHhG8cmfivxLRhemYlTT60Ly9Cc35USrpi8/m+Lf/f/T8x9kEIQq47cRj1VQIFuxTxxCcvqiQeQSHjQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
@@ -92,5 +105,37 @@
         </table>
       </div>
     </main>
+
+    <div id="success-popup" class="mfp-hide">
+      <div class="popup-inner">
+        <h2>☺️</h2>
+        <p>A palavra pertence à linguagem!</p>
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div id="fail-popup" class="mfp-hide">
+      <div class="popup-inner">
+        <h2>🙁</h2>
+        <p>A palavra não pertence à linguagem!</p>
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div id="empty-popup" class="mfp-hide">
+      <div class="popup-inner">
+        <h2>👩🏼‍💻</h2>
+        <p>Digite algo...</p>
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div id="char-popup" class="mfp-hide">
+      <div class="popup-inner">
+        <h2>🐞</h2>
+        <p></p>
+        <div class="progress-bar"></div>
+      </div>
+    </div>
   </body>
 </html>

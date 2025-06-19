@@ -246,13 +246,43 @@ $(document).ready(function () {
         //verifica se o input está vazio 
         if (text.trim() != "") {
             if (text.match(/\d|\W|[_]/g)) {
-                alert('Char inválido: ' + text.match(/\d|\W|[_]/g)[0]);
+                $("#char-popup p").html("Caractere inválido: " + text.match(/\d|\W|[_]/g)[0]);
+                $.magnificPopup.open({
+                    items: {
+                        src: '#char-popup',
+                        type: 'inline'
+                    },
+                    callbacks: {
+                        open: function () {
+                            setTimeout(function () {
+                                $.magnificPopup.close();
+                            }, 4000);
+                        }
+                    },
+                    removalDelay: 300,
+                    mainClass: 'mfp-fade'
+                });
+
             } else {
                 addWords(text.toLowerCase());
                 $("#words").val("");
             }
         } else {
-            alert("Escreve algo aí seu bananão!");
+            $.magnificPopup.open({
+                items: {
+                    src: '#empty-popup',
+                    type: 'inline'
+                },
+                callbacks: {
+                    open: function () {
+                        setTimeout(function () {
+                            $.magnificPopup.close();
+                        }, 4000);
+                    }
+                },
+                removalDelay: 300,
+                mainClass: 'mfp-fade'
+            });
         }
     });
 
@@ -260,7 +290,6 @@ $(document).ready(function () {
     $(".button-clear").click(function () {
         clearDictionary();
         clearTable();
-        alert("Você excluiu a lista :(((");
     });
 
     $("#words").keydown(function (event) {
@@ -270,13 +299,42 @@ $(document).ready(function () {
             //verifica se o input está vazio 
             if (text.trim() != "") {
                 if (text.match(/\d|\W|[_]/g)) {
-                    alert('Char inválido: ' + text.match(/\d|\W|[_]/g)[0]);
+                    $("#char-popup p").html("Caractere inválido: " + text.match(/\d|\W|[_]/g)[0]);
+                    $.magnificPopup.open({
+                        items: {
+                            src: '#char-popup',
+                            type: 'inline'
+                        },
+                        callbacks: {
+                            open: function () {
+                                setTimeout(function () {
+                                    $.magnificPopup.close();
+                                }, 4000);
+                            }
+                        },
+                        removalDelay: 300,
+                        mainClass: 'mfp-fade'
+                    });
                 } else {
                     addWords(text.toLowerCase());
                     $("#words").val("");
                 }
             } else {
-                alert("Escreve algo aí seu bananão!");
+                $.magnificPopup.open({
+                    items: {
+                        src: '#empty-popup',
+                        type: 'inline'
+                    },
+                    callbacks: {
+                        open: function () {
+                            setTimeout(function () {
+                                $.magnificPopup.close();
+                            }, 4000);
+                        }
+                    },
+                    removalDelay: 300,
+                    mainClass: 'mfp-fade'
+                });
             }
         }
     });
@@ -299,9 +357,37 @@ $(document).ready(function () {
             //verifica se o input está vazio 
             if (text.trim() != "") {
                 if (analyzer.final_states.includes(analyzer.current_state)) {
-                    alert("A palavra pertence a linguagem");
+                    $.magnificPopup.open({
+                        items: {
+                            src: '#success-popup',
+                            type: 'inline'
+                        },
+                        callbacks: {
+                            open: function () {
+                                setTimeout(function () {
+                                    $.magnificPopup.close();
+                                }, 4000);
+                            }
+                        },
+                        removalDelay: 300,
+                        mainClass: 'mfp-fade'
+                    });
                 } else {
-                    alert("A palavra não pertence a linguagem");
+                    $.magnificPopup.open({
+                        items: {
+                            src: '#fail-popup',
+                            type: 'inline'
+                        },
+                        callbacks: {
+                            open: function () {
+                                setTimeout(function () {
+                                    $.magnificPopup.close();
+                                }, 4000);
+                            }
+                        },
+                        removalDelay: 300,
+                        mainClass: 'mfp-fade'
+                    });
                 }
                 $("#search").val("");
                 analyzer.current_state = analyzer.initial_state;
@@ -309,11 +395,40 @@ $(document).ready(function () {
                 analyzer.state_stack = [];
                 updateTable();
             } else {
-                alert("Escreve algo aí seu bananão!");
+                $.magnificPopup.open({
+                    items: {
+                        src: '#empty-popup',
+                        type: 'inline'
+                    },
+                    callbacks: {
+                        open: function () {
+                            setTimeout(function () {
+                                $.magnificPopup.close();
+                            }, 4000);
+                        }
+                    },
+                    removalDelay: 300,
+                    mainClass: 'mfp-fade'
+                });
             }
         } else if (event.key.match(/\d|\W|[_]/g)) {
             event.preventDefault();
-            alert('Char inválido: ' + event.key);
+            $("#char-popup p").html("Caractere inválido: " + event.key);
+            $.magnificPopup.open({
+                items: {
+                    src: '#char-popup',
+                    type: 'inline'
+                },
+                callbacks: {
+                    open: function () {
+                        setTimeout(function () {
+                            $.magnificPopup.close();
+                        }, 4000);
+                    }
+                },
+                removalDelay: 300,
+                mainClass: 'mfp-fade'
+            });
         } else {
             console.log("else dos elses" + event.key);
             searchWord(event.key)
