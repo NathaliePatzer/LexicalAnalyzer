@@ -75,7 +75,7 @@ $(document).ready(function () {
         $(".table").html(result);
     }
 
-     function clearTable() {
+    function clearTable() {
         analyzer.matrix = new Map();
         analyzer.matrix.set("q0", new Map());
         analyzer.initial_state = "q0";
@@ -155,6 +155,7 @@ $(document).ready(function () {
     //gerencia a adição e armazenamento de palavras
     function addWords(word) {
         console.log(word);
+        $("#search").val("");
         //define o estado atual como o estado inicial
         analyzer.current_state = analyzer.initial_state;
         //for para percorrer cada letra da palavra 
@@ -207,6 +208,34 @@ $(document).ready(function () {
         //adiciona a palavra ao dicionário no html
         updateDictionary();
         updateTable();
+        //volta o current state para o inicial (q0)
+        analyzer.current_state = analyzer.initial_state;
+    }
+
+    function searchWord(token) {
+        console.log("Entrou na funcao de pesquisa");
+        if (analyzer.matrix.has(analyzer.current_state)) {
+            if (analyzer.matrix.get(analyzer.current_state).has(token)) {
+                //pinta de verde 
+                analyzer.state_stack.push(analyzer.current_state);
+                analyzer.current_state = analyzer.matrix.get(analyzer.current_state).get(token);
+                analyzer.token_stack.push(token);
+                console.log(analyzer);
+            } else {
+                console.log("else 1")
+                //pinta de vermelho 
+                analyzer.state_stack.push(analyzer.current_state);
+                analyzer.current_state = "error";
+                analyzer.token_stack.push(token);
+                console.log(analyzer);
+            }
+        } else {
+            console.log("else 2")
+            analyzer.state_stack.push(analyzer.current_state);
+            analyzer.current_state = "error";
+            analyzer.token_stack.push(token);
+            console.log(analyzer);
+        }
     }
 
     //evento ao clicar no botão para adicionar palavras 
@@ -214,9 +243,9 @@ $(document).ready(function () {
         var text = $("#words").val();
         //verifica se o input está vazio 
         if (text.trim() != "") {
-            if(text.match(/\d|\W|[_]/g)){
+            if (text.match(/\d|\W|[_]/g)) {
                 alert('Char inválido: ' + text.match(/\d|\W|[_]/g)[0]);
-            }else{
+            } else {
                 addWords(text.toLowerCase());
                 $("#words").val("");
             }
@@ -232,21 +261,57 @@ $(document).ready(function () {
         alert("Você excluiu a lista :(((");
     });
 
-    $("#words").keydown(function(event) {
+    $("#words").keydown(function (event) {
         var text = $("#words").val();
-        if(event.key === ' ' || event.keyCode === 13){
+        if (event.key === ' ' || event.keyCode === 13) {
             event.preventDefault();
             //verifica se o input está vazio 
             if (text.trim() != "") {
-                if(text.match(/\d|\W|[_]/g)){
+                if (text.match(/\d|\W|[_]/g)) {
                     alert('Char inválido: ' + text.match(/\d|\W|[_]/g)[0]);
-                }else{
+                } else {
                     addWords(text.toLowerCase());
                     $("#words").val("");
                 }
             } else {
                 alert("Escreve algo aí seu bananão!");
             }
+        }
+    });
+
+    $("#search").keydown(function (event) {
+        var text = $("#search").val();
+
+        //verifica o backspace 
+        if (event.keyCode === 8) {
+            if (text.trim() != "") {
+                analyzer.current_state = analyzer.state_stack.pop();
+                analyzer.token_stack.pop();
+                console.log(analyzer);
+            }
+            //verifica o espaço e enter
+        } else if (event.key === ' ' || event.keyCode === 13) {
+            event.preventDefault();
+            //verifica se o input está vazio 
+            if (text.trim() != "") {
+                if (analyzer.final_states.includes(analyzer.current_state)){
+                    alert("A palavra pertence a linguagem");
+                } else {
+                    alert("A palavra não pertence a linguagem");
+                }
+                $("#search").val("");
+                analyzer.current_state = analyzer.initial_state;
+                analyzer.token_stack = [];
+                analyzer.state_stack = [];
+            } else {
+                alert("Escreve algo aí seu bananão!");
+            }
+        } else if (event.key.match(/\d|\W|[_]/g)) {
+            event.preventDefault();
+            alert('Char inválido: ' + event.key);
+        } else {
+            console.log("else dos elses" + event.key);
+            searchWord(event.key)
         }
     });
 
