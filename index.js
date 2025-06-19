@@ -17,14 +17,11 @@ $(document).ready(function () {
     };
 
     function updateDictionary() {
-        console.log(wordList);
         var words = $("#words-list");
         var str = "";
         for (var i = 0; i < wordList.length; i++) {
             str += "<div>" + wordList[i] + "</div>";
-            console.log(wordList[i]);
         }
-        console.log(str);
         words.html(str);
     }
 
@@ -48,8 +45,6 @@ $(document).ready(function () {
 
         //inicia a construção das linhas da tabela 
         result += `<tbody>\n`;
-        console.log(analyzer.matrix);
-        console.log(analyzer.matrix.size);
         for (let j = 0; j < analyzer.matrix.size; j++) {
             if (analyzer.final_states.includes(`q${j}`)) {
                 result += `<tr class="row_q${j}">\n`;
@@ -71,7 +66,6 @@ $(document).ready(function () {
         }
         //finaliza a construção das linhas da tabela 
         result += `</tbody></table>\n`;
-        console.log(result);
         $(".table").html(result);
     }
 
@@ -84,7 +78,6 @@ $(document).ready(function () {
         analyzer.state_stack = [];
         analyzer.current_state = "q0";
         states = 0;
-        console.log(analyzer);
         var str = `<table>
           <thead>
             <tr>
@@ -154,13 +147,11 @@ $(document).ready(function () {
 
     //gerencia a adição e armazenamento de palavras
     function addWords(word) {
-        console.log(word);
         $("#search").val("");
         //define o estado atual como o estado inicial
         analyzer.current_state = analyzer.initial_state;
         //for para percorrer cada letra da palavra 
         for (var i = 0; i < word.length; i++) {
-            console.log(word[i]);
             //executa se a matriz já possui o estado atual
             if (analyzer.matrix.has(analyzer.current_state)) {
                 //se o estado atual já possui o token analisado, o valor do mesmo é definido como o estado atual (se o token já existe, não é necessário adicioná-lo novamente)
@@ -203,8 +194,6 @@ $(document).ready(function () {
 
         //adiciona a palavra ao dicionário 
         wordList.push(word);
-        console.log(analyzer.final_states);
-        console.log(analyzer.matrix);
         //adiciona a palavra ao dicionário no html
         updateDictionary();
         updateTable();
@@ -213,7 +202,6 @@ $(document).ready(function () {
     }
 
     function searchWord(token) {
-        console.log("Entrou na funcao de pesquisa");
         if (analyzer.matrix.has(analyzer.current_state)) {
             if (analyzer.matrix.get(analyzer.current_state).has(token)) {
                 //colore de verde 
@@ -221,22 +209,17 @@ $(document).ready(function () {
                 analyzer.state_stack.push(analyzer.current_state);
                 analyzer.current_state = analyzer.matrix.get(analyzer.current_state).get(token);
                 analyzer.token_stack.push(token);
-                console.log(analyzer);
             } else {
-                console.log("else 1")
                 //colore de vermelho 
                 $(".row_" + analyzer.current_state + " .column_" + token).addClass("fail");
                 analyzer.state_stack.push(analyzer.current_state);
                 analyzer.current_state = "error";
                 analyzer.token_stack.push(token);
-                console.log(analyzer);
             }
         } else {
-            console.log("else 2")
             analyzer.state_stack.push(analyzer.current_state);
             analyzer.current_state = "error";
             analyzer.token_stack.push(token);
-            console.log(analyzer);
         }
     }
 
@@ -290,6 +273,8 @@ $(document).ready(function () {
     $(".button-clear").click(function () {
         clearDictionary();
         clearTable();
+        $("#search").val("");
+        $("#words").val("");
     });
 
     $("#words").keydown(function (event) {
@@ -341,13 +326,11 @@ $(document).ready(function () {
 
     $("#search").keydown(function (event) {
         var text = $("#search").val();
-
         //verifica o backspace 
         if (event.keyCode === 8) {
             if (text.trim() != "") {
                 analyzer.current_state = analyzer.state_stack.pop();
                 var token = analyzer.token_stack.pop();
-                console.log(analyzer);
                 $(".row_" + analyzer.current_state + " .column_" + token).removeClass("fail");
                 $(".row_" + analyzer.current_state + " .column_" + token).removeClass("success");
             }
@@ -429,8 +412,7 @@ $(document).ready(function () {
                 removalDelay: 300,
                 mainClass: 'mfp-fade'
             });
-        } else {
-            console.log("else dos elses" + event.key);
+        } else if (!(event.keyCode < 65 || event.keyCode > 90)) {
             searchWord(event.key)
         }
     });
