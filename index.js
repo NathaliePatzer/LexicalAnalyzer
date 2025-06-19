@@ -38,10 +38,10 @@ $(document).ready(function () {
         const letters = 'abcdefghijklmnopqrstuvwxyz';
         let result = '';
         //cabeçalho da tabela
-        result += `<table><thead><tr><th scope="col" class="collum_state">δ</th>`;
+        result += `<table><thead><tr><th scope="col" class="column_state">δ</th>`;
         for (let i = 0; i < letters.length; i++) {
             const letter = letters[i];
-            result += `<th scope="col" class="collum_${letter}">${letter}</th>\n`;
+            result += `<th scope="col" class="column_${letter}">${letter}</th>\n`;
         }
         //finaliza o cabeçalho da tabela
         result += `</tr></thead>`;
@@ -53,10 +53,10 @@ $(document).ready(function () {
         for (let j = 0; j < analyzer.matrix.size; j++) {
             if (analyzer.final_states.includes(`q${j}`)) {
                 result += `<tr class="row_q${j}">\n`;
-                result += `<td class="collum_state">*q${j}</td>\n`;
+                result += `<td class="column_state">*q${j}</td>\n`;
             } else {
                 result += `<tr class="row_q${j}">\n`;
-                result += `<td class="collum_state">q${j}</td>\n`;
+                result += `<td class="column_state">q${j}</td>\n`;
             }
 
             for (let i = 0; i < letters.length; i++) {
@@ -65,7 +65,7 @@ $(document).ready(function () {
                 if (analyzer.matrix.get('q' + j).has(letter)) {
                     $symbol = analyzer.matrix.get('q' + j).get(letter);
                 }
-                result += `<td class="collum_${letter}">${$symbol}</td>\n`;
+                result += `<td class="column_${letter}">${$symbol}</td>\n`;
             }
             result += `</tr>\n`;
         }
@@ -88,64 +88,64 @@ $(document).ready(function () {
         var str = `<table>
           <thead>
             <tr>
-              <th scope="col" class="collum_state">δ</th>
-              <th scope="col" class="collum_a">a</th>
-              <th scope="col" class="collum_b">b</th>
-              <th scope="col" class="collum_c">c</th>
-              <th scope="col" class="collum_d">d</th>
-              <th scope="col" class="collum_e">e</th>
-              <th scope="col" class="collum_f">f</th>
-              <th scope="col" class="collum_g">g</th>
-              <th scope="col" class="collum_h">h</th>
-              <th scope="col" class="collum_i">i</th>
-              <th scope="col" class="collum_j">j</th>
-              <th scope="col" class="collum_k">k</th>
-              <th scope="col" class="collum_l">l</th>
-              <th scope="col" class="collum_m">m</th>
-              <th scope="col" class="collum_n">n</th>
-              <th scope="col" class="collum_o">o</th>
-              <th scope="col" class="collum_p">p</th>
-              <th scope="col" class="collum_q">q</th>
-              <th scope="col" class="collum_r">r</th>
-              <th scope="col" class="collum_s">s</th>
-              <th scope="col" class="collum_t">t</th>
-              <th scope="col" class="collum_u">u</th>
-              <th scope="col" class="collum_v">v</th>
-              <th scope="col" class="collum_w">w</th>
-              <th scope="col" class="collum_x">x</th>
-              <th scope="col" class="collum_y">y</th>
-              <th scope="col" class="collum_z">z</th>
+              <th scope="col" class="column_state">δ</th>
+              <th scope="col" class="column_a">a</th>
+              <th scope="col" class="column_b">b</th>
+              <th scope="col" class="column_c">c</th>
+              <th scope="col" class="column_d">d</th>
+              <th scope="col" class="column_e">e</th>
+              <th scope="col" class="column_f">f</th>
+              <th scope="col" class="column_g">g</th>
+              <th scope="col" class="column_h">h</th>
+              <th scope="col" class="column_i">i</th>
+              <th scope="col" class="column_j">j</th>
+              <th scope="col" class="column_k">k</th>
+              <th scope="col" class="column_l">l</th>
+              <th scope="col" class="column_m">m</th>
+              <th scope="col" class="column_n">n</th>
+              <th scope="col" class="column_o">o</th>
+              <th scope="col" class="column_p">p</th>
+              <th scope="col" class="column_q">q</th>
+              <th scope="col" class="column_r">r</th>
+              <th scope="col" class="column_s">s</th>
+              <th scope="col" class="column_t">t</th>
+              <th scope="col" class="column_u">u</th>
+              <th scope="col" class="column_v">v</th>
+              <th scope="col" class="column_w">w</th>
+              <th scope="col" class="column_x">x</th>
+              <th scope="col" class="column_y">y</th>
+              <th scope="col" class="column_z">z</th>
             </tr>
           </thead>
           <tbody>
             <tr class="row_q0">
-              <td class="collum_state">q0</td>
-              <td class="collum_a">-</td>
-              <td class="collum_b">-</td>
-              <td class="collum_c">-</td>
-              <td class="collum_d">-</td>
-              <td class="collum_e">-</td>
-              <td class="collum_f">-</td>
-              <td class="collum_g">-</td>
-              <td class="collum_h">-</td>
-              <td class="collum_i">-</td>
-              <td class="collum_j">-</td>
-              <td class="collum_k">-</td>
-              <td class="collum_l">-</td>
-              <td class="collum_m">-</td>
-              <td class="collum_n">-</td>
-              <td class="collum_o">-</td>
-              <td class="collum_p">-</td>
-              <td class="collum_q">-</td>
-              <td class="collum_r">-</td>
-              <td class="collum_s">-</td>
-              <td class="collum_t">-</td>
-              <td class="collum_u">-</td>
-              <td class="collum_v">-</td>
-              <td class="collum_w">-</td>
-              <td class="collum_x">-</td>
-              <td class="collum_y">-</td>
-              <td class="collum_z">-</td>
+              <td class="column_state">q0</td>
+              <td class="column_a">-</td>
+              <td class="column_b">-</td>
+              <td class="column_c">-</td>
+              <td class="column_d">-</td>
+              <td class="column_e">-</td>
+              <td class="column_f">-</td>
+              <td class="column_g">-</td>
+              <td class="column_h">-</td>
+              <td class="column_i">-</td>
+              <td class="column_j">-</td>
+              <td class="column_k">-</td>
+              <td class="column_l">-</td>
+              <td class="column_m">-</td>
+              <td class="column_n">-</td>
+              <td class="column_o">-</td>
+              <td class="column_p">-</td>
+              <td class="column_q">-</td>
+              <td class="column_r">-</td>
+              <td class="column_s">-</td>
+              <td class="column_t">-</td>
+              <td class="column_u">-</td>
+              <td class="column_v">-</td>
+              <td class="column_w">-</td>
+              <td class="column_x">-</td>
+              <td class="column_y">-</td>
+              <td class="column_z">-</td>
             </tr>
           </tbody>
         </table>`;
@@ -216,14 +216,16 @@ $(document).ready(function () {
         console.log("Entrou na funcao de pesquisa");
         if (analyzer.matrix.has(analyzer.current_state)) {
             if (analyzer.matrix.get(analyzer.current_state).has(token)) {
-                //pinta de verde 
+                //colore de verde 
+                $(".row_" + analyzer.current_state + " .column_" + token).addClass("success");
                 analyzer.state_stack.push(analyzer.current_state);
                 analyzer.current_state = analyzer.matrix.get(analyzer.current_state).get(token);
                 analyzer.token_stack.push(token);
                 console.log(analyzer);
             } else {
                 console.log("else 1")
-                //pinta de vermelho 
+                //colore de vermelho 
+                $(".row_" + analyzer.current_state + " .column_" + token).addClass("fail");
                 analyzer.state_stack.push(analyzer.current_state);
                 analyzer.current_state = "error";
                 analyzer.token_stack.push(token);
@@ -286,15 +288,17 @@ $(document).ready(function () {
         if (event.keyCode === 8) {
             if (text.trim() != "") {
                 analyzer.current_state = analyzer.state_stack.pop();
-                analyzer.token_stack.pop();
+                var token = analyzer.token_stack.pop();
                 console.log(analyzer);
+                $(".row_" + analyzer.current_state + " .column_" + token).removeClass("fail");
+                $(".row_" + analyzer.current_state + " .column_" + token).removeClass("success");
             }
             //verifica o espaço e enter
         } else if (event.key === ' ' || event.keyCode === 13) {
             event.preventDefault();
             //verifica se o input está vazio 
             if (text.trim() != "") {
-                if (analyzer.final_states.includes(analyzer.current_state)){
+                if (analyzer.final_states.includes(analyzer.current_state)) {
                     alert("A palavra pertence a linguagem");
                 } else {
                     alert("A palavra não pertence a linguagem");
@@ -303,6 +307,7 @@ $(document).ready(function () {
                 analyzer.current_state = analyzer.initial_state;
                 analyzer.token_stack = [];
                 analyzer.state_stack = [];
+                updateTable();
             } else {
                 alert("Escreve algo aí seu bananão!");
             }

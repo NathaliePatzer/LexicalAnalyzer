@@ -54,7 +54,7 @@ body {
   border: none;
   border-radius: 5px;
   margin-top: 8px;
-  background-color: rgba(244, 49, 49, 0.751);
+  background-color: rgba(239, 69, 69, 0.751);
   font-size: 14px;
   cursor: pointer;
   font-weight: bold;
@@ -122,4 +122,16 @@ th:first-child {
   padding: 5px;
   background: #83379c;  
   border-radius: 6px;  
+}
+
+.success {
+  background-color: rgba(96, 218, 96, 0.751);
+  color: black;
+  font-weight: bold;
+}
+
+.fail {
+  background-color: rgba(239, 69, 69, 0.751);
+  color: black;
+  font-weight: bold;
 }
