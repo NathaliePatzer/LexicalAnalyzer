@@ -1,6 +1,6 @@
 body {
-  background-color: darkgray;
-  color: black;
+  background-color: #0D1117;
+  color: #C9D1D9;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
@@ -12,7 +12,7 @@ body {
 #inputs, #dictionary {
   margin-left: 20%;
   margin-right: 20%;
-  background-color: rgb(205, 203, 203);
+  background-color: #161B22;
   padding: 10px;
   border-radius: 10px;
   display: flex;
@@ -24,11 +24,13 @@ body {
 
 #words, #search {
   width: 99%;
-  background-color: rgba(105, 105, 105, 0.156);
+  color: #C9D1D9;
+  background-color: #21262D;
   border: 0;
   font-size: larger;
   height: 30px;
   border-radius: 5px;
+  margin-top: 5px;
 }
 
 .button {
@@ -36,14 +38,15 @@ body {
   border: none;
   border-radius: 5px;
   margin-top: 8px;
-  background-color: rgba(143, 188, 143, 0.751);
+  background-color: rgba(96, 218, 96, 0.751);
   font-size: 14px;
   cursor: pointer;
   font-weight: bold;
 }
 
 .button:hover {
-  background-color: rgb(143, 188, 143);
+  background-color: rgba(67, 155, 67, 0.751);
+  color: #C9D1D9;
 }
 
 .button-clear {
@@ -51,14 +54,15 @@ body {
   border: none;
   border-radius: 5px;
   margin-top: 8px;
-  background-color: rgba(190, 136, 136, 0.751);
+  background-color: rgba(244, 49, 49, 0.751);
   font-size: 14px;
   cursor: pointer;
   font-weight: bold;
 }
 
 .button-clear:hover {
-  background-color: rgba(190, 136, 136, 0.953);
+  background-color: rgba(185, 32, 32, 0.751);
+  color: #C9D1D9;
 }
 
 .table {
@@ -72,7 +76,7 @@ table {
   width: 100%;
   min-width: 900px; /* impede colapsar demais */
   table-layout: auto;
-  background-color: #ffffff;
+  background-color: #3e464e;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   overflow: hidden;
@@ -81,20 +85,20 @@ table {
 th,td {
   padding: 12px 16px;
   text-align: center;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #757a80;
 }
 
 th {
-  background-color: #f0f0f0;
+  background-color: #21262D;
+  color: #C9D1D9;
   font-weight: 600;
-  color: #333;
   white-space: nowrap;
 }
 
 td:first-child {
   font-weight: bold;
-  background-color: #f7f7f7;
-  color: #333;
+  background-color: #30363D;
+  color: #C9D1D9;
   position: sticky;
   left: 0;
   z-index: 1;
@@ -116,6 +120,6 @@ th:first-child {
   word-break: break-word; 
   max-width: 100%;       
   padding: 5px;
-  background: #c772e44d;  
+  background: #83379c;  
   border-radius: 6px;  
 }

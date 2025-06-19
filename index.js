@@ -214,33 +214,41 @@ $(document).ready(function () {
         var text = $("#words").val();
         //verifica se o input está vazio 
         if (text.trim() != "") {
-            addWords(text.toLowerCase());
+            if(text.match(/\d|\W|[_]/g)){
+                alert('Char inválido: ' + text.match(/\d|\W|[_]/g)[0]);
+            }else{
+                addWords(text.toLowerCase());
+                $("#words").val("");
+            }
         } else {
             alert("Escreve algo aí seu bananão!");
         }
-        //apaga a palavra do campo de input 
-        $("#words").val("");
-    })
+    });
 
     //evento ao clicar no botão para limpar
     $(".button-clear").click(function () {
         clearDictionary();
         clearTable();
-        alert("Você exclui a lista :(((");
-    })
+        alert("Você excluiu a lista :(((");
+    });
 
     $("#words").keydown(function(event) {
         var text = $("#words").val();
-        if (!(/^[a-zA-Z]+$/.test(event.key)) && !(event.key === ' ' || event.keyCode === 13)) {
-            console.log('entrou')
+        if(event.key === ' ' || event.keyCode === 13){
             event.preventDefault();
-        } 
-        else if (event.key === ' ' || event.keyCode === 13) {
-            event.preventDefault();
-            addWords(text.toLowerCase());
-            $("#words").val("");
+            //verifica se o input está vazio 
+            if (text.trim() != "") {
+                if(text.match(/\d|\W|[_]/g)){
+                    alert('Char inválido: ' + text.match(/\d|\W|[_]/g)[0]);
+                }else{
+                    addWords(text.toLowerCase());
+                    $("#words").val("");
+                }
+            } else {
+                alert("Escreve algo aí seu bananão!");
+            }
         }
-    })
+    });
 
 });
 
